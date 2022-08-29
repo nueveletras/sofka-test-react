@@ -31,8 +31,9 @@ const Pokemon = () => {
       <div className="col-12 flex justify-content-center flex-wrap">
         <p>Usa el mouse para controlar el objeto</p>
       </div>
-      <img
-              className="pt-3 pl-5"
+      <div className="pt-3 col-12 md:col-2">
+        <img
+              className="pt-3 col w-12"
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
                 id
               }.png`}
@@ -42,10 +43,12 @@ const Pokemon = () => {
               }
               alt={pokemon?.name}
             />
+      </div>
+      
       <div className="pt-3 col-12 md:col-4">
         <div className="pokemon-grid-item card">
-          <div className="pokemon-grid-item-contentr">
-            <Fieldset legend={pokemon?.name?.toUpperCase()}>
+          <div className="pokemon-grid-item-content col-12">
+            <Fieldset className="pokemon-grid-item card " legend={pokemon?.name?.toUpperCase()}>
               <div className="justify-content-center ">
                 <div>
                   <h2>Abilities</h2>
