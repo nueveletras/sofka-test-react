@@ -1,0 +1,40 @@
+
+.dataview .p-dropdown {
+    width: 14rem;
+    font-weight: normal;
+}
+
+.dataview .pokemon-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.dataview .pokemon-grid-item {
+    margin: .5em;
+    border: 1px solid var(--surface-border);
+    padding: 2rem;
+}
+
+.dataview .pokemon-grid-item .pokemon-grid-item-top,
+    .dataview .pokemon-grid-item .pokemon-grid-item-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dataview .pokemon-grid-item img {
+    width: 75%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin: 2rem 0;
+}
+
+.dataview .pokemon-grid-item .pokemon-grid-item-content {
+    text-align: center;
+}
+
+.dataview .pokemon-grid-item .product-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+                
