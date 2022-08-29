@@ -23,7 +23,7 @@ const Pokemons = () => {
 
   useEffect(() => {
     pokemonService.getAllPokemons().then((data) => {
-      setPokemonsBuffer(data)
+      setPokemonsBuffer(data);
       return setPokemons(data);
     });
   }, []);
@@ -42,7 +42,7 @@ const Pokemons = () => {
   };
 
   const searchByName = (event) => {
-    setPokemons(()=>pokemonsBuffer.filter(e=> e.name.includes(event)))
+    setPokemons(() => pokemonsBuffer.filter((e) => e.name.includes(event.toLowerCase())));
   };
 
   const renderListItem = (data) => {
@@ -113,27 +113,31 @@ const Pokemons = () => {
 
   const renderHeader = () => {
     return (
-      <div className="grid">
-        <div className="col-4" style={{ textAlign: "left" }}>
-          <Dropdown
-            options={sortOptions}
-            value={sortKey}
-            optionLabel="label"
-            placeholder="Ordenar alfabeticamente"
-            onChange={onSortChange}
-          />
+      <div>
+        <div className="grid">
+          <div className="col" style={{ textAlign: "left" }}>
+            <Dropdown
+              options={sortOptions}
+              value={sortKey}
+              optionLabel="label"
+              placeholder="Ordenar alfabeticamente"
+              onChange={onSortChange}
+            />
+          </div>
+          <div className="col" style={{ textAlign: "right" }}>
+            <DataViewLayoutOptions
+              layout={layout}
+              onChange={(e) => setLayout(e.value)}
+            />
+          </div>
         </div>
-        <div className="col-4" style={{ textAlign: "left" }}>
-          <InputText 
-          onChange={(e) => searchByName(e.target.value)}
-          placeholder="Buscar por nombre"
-          />
-        </div>
-        <div className="col-4" style={{ textAlign: "right" }}>
-          <DataViewLayoutOptions
-            layout={layout}
-            onChange={(e) => setLayout(e.value)}
-          />
+        <div className="grid">
+          <div className="col" style={{ textAlign: "left" }}>
+            <InputText
+              onChange={(e) => searchByName(e.target.value)}
+              placeholder="Buscar por nombre"
+            />
+          </div>
         </div>
       </div>
     );

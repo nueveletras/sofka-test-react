@@ -17,7 +17,6 @@ const Pokemon = () => {
       return setPokemon(data);
     });
   }, []);
-  console.log(pokemon);
   return (
     <div className="flex justify-content-center flex-wrap">
       <Canvas className="flex justify-content-center flex-wrap">
