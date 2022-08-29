@@ -5,9 +5,11 @@ import { Dropdown } from "primereact/dropdown";
 import { PokemonService } from "../../core/service/PokemonService";
 import "./Pokemons.css";
 import { Link } from "react-router-dom";
+import { InputText } from "primereact/inputtext";
 
 const Pokemons = () => {
   const [pokemons, setPokemons] = useState([1, 2, 3]);
+  const [pokemonsBuffer, setPokemonsBuffer] = useState([1, 2, 3]);
   const [layout, setLayout] = useState("grid");
   const [sortKey, setSortKey] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
@@ -21,14 +23,13 @@ const Pokemons = () => {
 
   useEffect(() => {
     pokemonService.getAllPokemons().then((data) => {
-      console.log(data);
+      setPokemonsBuffer(data)
       return setPokemons(data);
     });
   }, []);
 
   const onSortChange = (event) => {
     const value = event.value;
-
     if (value.indexOf("!") === 0) {
       setSortOrder(-1);
       setSortField(value.substring(1, value.length));
@@ -38,6 +39,10 @@ const Pokemons = () => {
       setSortField(value);
       setSortKey(value);
     }
+  };
+
+  const searchByName = (event) => {
+    setPokemons(()=>pokemonsBuffer.filter(e=> e.name.includes(event)))
   };
 
   const renderListItem = (data) => {
@@ -109,7 +114,7 @@ const Pokemons = () => {
   const renderHeader = () => {
     return (
       <div className="grid">
-        <div className="col-6" style={{ textAlign: "left" }}>
+        <div className="col-4" style={{ textAlign: "left" }}>
           <Dropdown
             options={sortOptions}
             value={sortKey}
@@ -118,7 +123,13 @@ const Pokemons = () => {
             onChange={onSortChange}
           />
         </div>
-        <div className="col-6" style={{ textAlign: "right" }}>
+        <div className="col-4" style={{ textAlign: "left" }}>
+          <InputText 
+          onChange={(e) => searchByName(e.target.value)}
+          placeholder="Buscar por nombre"
+          />
+        </div>
+        <div className="col-4" style={{ textAlign: "right" }}>
           <DataViewLayoutOptions
             layout={layout}
             onChange={(e) => setLayout(e.value)}
