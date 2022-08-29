@@ -31,7 +31,18 @@ const Pokemon = () => {
       <div className="col-12 flex justify-content-center flex-wrap">
         <p>Usa el mouse para controlar el objeto</p>
       </div>
-      <div className="col-12 md:col-4">
+      <img
+              className="pt-3 pl-5"
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                id
+              }.png`}
+              onError={(e) =>
+                (e.target.src =
+                  "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")
+              }
+              alt={pokemon?.name}
+            />
+      <div className="pt-3 col-12 md:col-4">
         <div className="pokemon-grid-item card">
           <div className="pokemon-grid-item-contentr">
             <Fieldset legend={pokemon?.name?.toUpperCase()}>
